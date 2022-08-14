@@ -1,23 +1,32 @@
 use aoc_runner::*;
-use clap::{App, Arg};
+use clap::Parser;
+
+#[derive(Parser, Debug)]
+#[clap(author, version, about, long_about = None)]
+struct Args {
+    /// Which day to run
+    #[clap(short, long, value_parser)]
+    day: String,
+
+    /// Run test data
+    #[clap(short, long, action)]
+    test: bool,
+}
 
 aoc_days!(aoc1, aoc2);
 
 fn main() {
-    let matches = App::new("Advent of Code 2021")
-        .version("0.3")
-        .author("Stefan Paun")
-        .arg(
-            Arg::with_name("day")
-                .short("d")
-                .long("day")
-                .help("Select the day")
-                .takes_value(true)
-                .required(true),
-        )
-        .get_matches();
+    let args = Args::parse();
 
-    let day = matches.value_of("day").unwrap_or("0");
+    let day = args.day;
 
-    match_day(day);
+    let test = args.test;
+
+    println!("{:?} {:?}", day, test);
+
+    if test {
+        match_day_test(&day);
+    } else {
+        match_day(&day);
+    }
 }

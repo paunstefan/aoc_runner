@@ -7,22 +7,22 @@ enum Command {
     Up(i32),
 }
 
-pub fn run_part1(path: &str) -> i32 {
+pub fn run_part1(path: &str) -> i64 {
     let data = std::fs::read_to_string(path)
         .unwrap()
         .lines()
         .map(|c| parse_command(c))
         .collect_vec();
-    solve1(&data)
+    solve1(&data) as i64
 }
 
-pub fn run_part2(path: &str) -> i32 {
+pub fn run_part2(path: &str) -> i64 {
     let data = std::fs::read_to_string(path)
         .unwrap()
         .lines()
         .map(|c| parse_command(c))
         .collect_vec();
-    solve2(&data)
+    solve2(&data) as i64
 }
 
 fn parse_command(command: &str) -> Command {

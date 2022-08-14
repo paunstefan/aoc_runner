@@ -1,22 +1,22 @@
 #![allow(dead_code)]
 use itertools::Itertools;
 
-pub fn run_part2(path: &str) -> i32 {
+pub fn run_part2(path: &str) -> i64 {
     let data = std::fs::read_to_string(path)
         .unwrap()
         .lines()
         .map(|n| n.parse::<i32>().unwrap())
         .collect_vec();
-    solve2(&data)
+    solve2(&data) as i64
 }
 
-pub fn run_part1(path: &str) -> i32 {
+pub fn run_part1(path: &str) -> i64 {
     let data = std::fs::read_to_string(path)
         .unwrap()
         .lines()
         .map(|n| n.parse::<i32>().unwrap())
         .collect_vec();
-    solve1(&data)
+    solve1(&data) as i64
 }
 
 fn solve1(input: &[i32]) -> i32 {
